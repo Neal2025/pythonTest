@@ -31,3 +31,6 @@ class LoginPage:
 
     def getPageDriver(self):
         return self.driver
+
+    def getGitInfo(self):
+        return self
