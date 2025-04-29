@@ -6,10 +6,10 @@ LoginPage_url = "https://sales-sit.ifsg.com.cn/sprt/login"
 EmployeeRoster_url = "https://sales-sit.ifsg.com.cn/sprt/hrsassgin/employee/employeeRosterSearch"
 
 #登录用户名
-LoginUserName = "00000"
+LoginUserName = "0000000"
 
 #登录密码
-LoginPassWord = "0000000"
+LoginPassWord = "00000000"
 
 #客户组织编号
 str_Org = "C000000269"
