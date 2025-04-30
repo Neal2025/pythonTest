@@ -147,3 +147,10 @@ class TestAssign():
 
         #确认
         myEMP.pressConfirmButton()
+
+        #输入工资
+        myEMP.EnterSalary(tdata4EmployeeOnboarding.social_salary,tdata4EmployeeOnboarding.house_salary)
+
+        #选择合同签订方式
+        myEMP.SelectContractMethod()
+        time.sleep(60)

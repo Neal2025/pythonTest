@@ -101,17 +101,17 @@ class EmployeeOnboardingPage():
     # 【组合报价单编号】输入框
     quote_input_xpath = please_input_xpath
 
-    # 【社保类服务参数工资】标题
-    social_salary_classname = "el-input__inner"
+    # 服务参数标题
+    service_param_id = "param"
 
-    # 【社保类服务参数工资】输入框
-    social_salary_input_xpath = ""
+    # 服务参数输入框
+    service_param_id_input_classname = "el-input__inner"
 
-    # 【公积金类服务参数工资】标题
-    house_salary_xpath = ""
+    #服务参数下拉选择
+    service_params_selects_classname = "el-select__suffix"
 
-    # 【公积金类服务参数工资】输入框
-    house_salary_input_xpath = ""
+    #合同签订方式选项
+    contract_method_option_xpath = "//*[contains(text(),'初签')]"
 
     # 【证件号】输入框
     id_input_xpath = please_input_xpath
@@ -322,18 +322,26 @@ class EmployeeOnboardingPage():
         quote = self.driver.find_element(By.XPATH, self.quote_xpath)
         quote.find_element(By.XPATH, self.quote_input_xpath)
 
-    #公共方法：输入社保类服务参数工
-    def EnterSocialSalary(self, SocialSalary):
+    #公共方法：输入社保类服务参数工资
+    def EnterSalary(self, SocialSalary,HouseSlary):
         self.driver.implicitly_wait(10)
-        social_salary = self.driver.find_element(By.CLASS_NAME, self.social_salary_classname)
-        social_salary.find_element(By.XPATH, self.social_salary_input_xpath)
-    #公共方法：选择合同签订方式
+        service_param = self.driver.find_element(By.ID, self.service_param_id)
+        onboarding_params_inputs=service_param.find_elements(By.CLASS_NAME, self.service_param_id_input_classname)
+        social_salary_input=onboarding_params_inputs[3]
+        social_salary_input.send_keys(SocialSalary)
+        house_salary_input = onboarding_params_inputs[6]
+        house_salary_input.send_keys(HouseSlary)
 
-    #公共方法：输入公积金类服务参数工资
-    def EnterHouseSalary(self, HouseSalary):
+
+    #公共方法：选择合同签订方式
+    def SelectContractMethod(self):
         self.driver.implicitly_wait(10)
-        house_salary = self.driver.find_element(By.CLASS_NAME, self.house_salary_classname)
-        house_salary.find_element(By.XPATH, self.house_salary_input_xpath)
+        service_param = self.driver.find_element(By.ID, self.service_param_id)
+        contract_methods = service_param.find_elements(By.CLASS_NAME, self.service_params_selects_classname)
+        contract_methods[4].click()
+        time.sleep(6)
+        contract_method_option = service_param.find_element(By.XPATH, self.contract_method_option_xpath)
+        contract_method_option.click()
 
     #公共方法：选择单位比例
 
